@@ -1,0 +1,10 @@
+name: StaffTickets
+main: net.bigbadcraft.stafftickets.Main
+version: 1.7
+commands:
+  helpop:
+    description: Submits a ticket using the ticket system.
+  ticket:
+    description: Displays a list of commands.
+    permission: staffticket.mod
+    permission-message: §cYou do not have <permission> permission.

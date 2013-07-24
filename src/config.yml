@@ -1,0 +1,24 @@
+ticket-list:
+  # Set this to false if you want tickets to be deleted.
+  delete-on-leave: true
+
+  # Append on words.
+  #   trigger:
+  #   - some
+  #   - words
+  trigger:
+  - water
+  - fire
+  - lava
+  - grief
+  - mod
+  - portal
+  
+  # Set this to true whether you want ticket information logged.
+  log-ticket-information: false
+
+reminder:
+  # Set this to true to enable ticket reminders.
+  enable: false
+  # Interval is set to 10min by default.
+  interval: 12000
