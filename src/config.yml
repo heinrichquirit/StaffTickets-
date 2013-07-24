@@ -20,5 +20,5 @@ ticket-list:
 reminder:
   # Set this to true to enable ticket reminders.
   enable: false
-  # Interval is set to 10min by default.
-  interval: 12000
+  # Interval is set to 10min (600sec) by default.
+  interval: 600
