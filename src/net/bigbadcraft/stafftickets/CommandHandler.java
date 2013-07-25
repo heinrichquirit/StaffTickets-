@@ -93,13 +93,15 @@ public class CommandHandler implements CommandExecutor {
 					@SuppressWarnings("resource")
 					Scanner in = new Scanner(Main.fileLog);
 					
-					if (!in.hasNextLine()) sender.sendMessage("§cNo data was found in the file."); 
-					
-					sender.sendMessage("§9Fetching file for you...");
-					
-					while (in.hasNextLine()) {
-						sender.sendMessage(in.nextLine());
-					}	
+					if (!in.hasNextLine()) {
+						sender.sendMessage("§cNo data was found in the file."); 
+					} else {
+						sender.sendMessage("§9Fetching file for you...");
+
+						while (in.hasNextLine()) {
+							sender.sendMessage(in.nextLine());
+						}	
+					}
 					
 				} catch (FileNotFoundException ex) {
 					Main.logger.severe(Main.fileLog.getName() + " could not be found!");
