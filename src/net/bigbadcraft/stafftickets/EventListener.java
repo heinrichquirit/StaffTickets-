@@ -23,12 +23,11 @@ public class EventListener implements Listener {
 		EventListener.playerTicket = new HashMap<String, String>();
 	}
 	
-	// Storing the triggered ticket
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent event) {
 		final Player player = event.getPlayer();
 		
-		for (String message : plugin.getConfig().getStringList("trigger")) {
+		for (String message : plugin.getConfig().getStringList("ticket-list.trigger")) {
 			
 			if (event.getMessage().contains(message)) {
 				
@@ -52,7 +51,7 @@ public class EventListener implements Listener {
 	
 	@EventHandler
 	public void onQuit(PlayerQuitEvent event) {
-		if (plugin.getConfig().getBoolean("deleteOnPlayerLeave")) {
+		if (plugin.getConfig().getBoolean("ticket-list.delete-on-leave")) {
 			if (playerTicket.containsKey(event.getPlayer().getName())) {
 				playerTicket.remove(event.getPlayer().getName());
 			}
