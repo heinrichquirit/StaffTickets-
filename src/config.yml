@@ -1,5 +1,5 @@
 ticket-list:
-  # Set this to false if you want tickets to be deleted.
+  # Set this to false if you want tickets to not be deleted.
   delete-on-leave: true
 
   # Append on words.

@@ -152,17 +152,38 @@ public class CommandHandler implements CommandExecutor {
 				
 				switch(args[0]) {
 				case "tp":
-					EventListener.playerTicket.remove(player.getName());
-					sender.sendMessage("Teleporting to " + "§9" + player.getName() + "§f...");
-					((Player) sender).teleport(player.getLocation());
+					if (EventListener.playerTicket.containsKey(player.getName())) {
+					
+						EventListener.playerTicket.remove(player.getName());
+						sender.sendMessage("Teleporting to " + "§9" + player.getName() + "§f...");
+						((Player) sender).teleport(player.getLocation());
+						
+					} else {
+						
+						sender.sendMessage("§9" + player.getName() + " §fhasn't triggered a ticket.");
+					}
 					break;
 				case "cl":
-					EventListener.playerTicket.remove(player.getName());
-					sender.sendMessage("Claimed§9 " + player.getName() + "'s §fticket.");
+					if (EventListener.playerTicket.containsKey(player.getName())) {
+					
+						EventListener.playerTicket.remove(player.getName());
+						sender.sendMessage("Claimed§9 " + player.getName() + "'s §fticket.");
+						
+					} else {
+						
+						sender.sendMessage("§9" + player.getName() + " §fhasn't triggered a ticket.");
+					}
 					break;
 				case "del":
-					EventListener.playerTicket.remove(player.getName());
-					sender.sendMessage("Removed§9 " + player.getName() + "'s §fticket.");
+					if (EventListener.playerTicket.containsKey(player.getName())) {
+					
+						EventListener.playerTicket.remove(player.getName());
+						sender.sendMessage("Removed§9 " + player.getName() + "'s §fticket.");
+						
+					} else {
+						
+						sender.sendMessage("§9" + player.getName() + " §fhasn't triggered a ticket.");
+					}
 					break;
 				default:
 					sender.sendMessage("Please use §9/ticket§f to view a list of commands.");
