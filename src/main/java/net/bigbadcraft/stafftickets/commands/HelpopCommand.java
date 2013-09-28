@@ -1,7 +1,8 @@
 package main.java.net.bigbadcraft.stafftickets.commands;
 
 import main.java.net.bigbadcraft.stafftickets.TicketPlugin;
-import main.resources.net.bigbadcraft.stafftickets.Methods;
+import main.resources.Methods;
+
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

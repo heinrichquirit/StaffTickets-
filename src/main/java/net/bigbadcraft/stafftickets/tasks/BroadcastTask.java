@@ -1,7 +1,8 @@
 package main.java.net.bigbadcraft.stafftickets.tasks;
 
 import main.java.net.bigbadcraft.stafftickets.TicketPlugin;
-import main.resources.net.bigbadcraft.stafftickets.Perm;
+import main.resources.Perm;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

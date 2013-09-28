@@ -1,4 +1,4 @@
-package main.resources.net.bigbadcraft.stafftickets;
+package main.resources;
 
 import main.java.net.bigbadcraft.stafftickets.TicketPlugin;
 import org.apache.commons.lang.StringUtils;

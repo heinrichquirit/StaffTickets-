@@ -1,4 +1,4 @@
-package main.resources.net.bigbadcraft.stafftickets;
+package main.resources;
 
 /**
  * User: Heinrich Quirit

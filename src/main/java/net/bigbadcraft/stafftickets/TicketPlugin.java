@@ -7,7 +7,8 @@ import main.java.net.bigbadcraft.stafftickets.listeners.ChatListener;
 import main.java.net.bigbadcraft.stafftickets.listeners.CommandListener;
 import main.java.net.bigbadcraft.stafftickets.listeners.QuitListener;
 import main.java.net.bigbadcraft.stafftickets.tasks.BroadcastTask;
-import main.resources.net.bigbadcraft.stafftickets.Methods;
+import main.resources.Methods;
+
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

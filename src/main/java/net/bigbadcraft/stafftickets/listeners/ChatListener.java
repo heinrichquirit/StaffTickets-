@@ -1,8 +1,9 @@
 package main.java.net.bigbadcraft.stafftickets.listeners;
 
 import main.java.net.bigbadcraft.stafftickets.TicketPlugin;
-import main.resources.net.bigbadcraft.stafftickets.Methods;
-import main.resources.net.bigbadcraft.stafftickets.Perm;
+import main.resources.Methods;
+import main.resources.Perm;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventPriority;
