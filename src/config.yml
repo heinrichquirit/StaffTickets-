@@ -1,4 +1,6 @@
 ticket-list:
+  # Set your helpop prefix.
+  helpop-prefix: '&f[&cHelpop&f]'
   # Set this to false if you want tickets to not be deleted.
   delete-on-leave: true
 
