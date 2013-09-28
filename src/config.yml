@@ -1,6 +1,4 @@
 ticket-list:
-  # Set your helpop prefix.
-  helpop-prefix: '&f[&cHelpop&f]'
   # Set this to false if you want tickets to not be deleted.
   delete-on-leave: true
 
@@ -15,12 +13,12 @@ ticket-list:
   - grief
   - mod
   - portal
-  
+
   # Set this to true whether you want ticket information logged.
   log-ticket-information: false
 
 reminder:
   # Set this to true to enable ticket reminders.
   enable: false
-  # Interval is set to 10min (600sec) by default.
-  interval: 600
+  # Interval is set to 10min by default
+  interval: 10
