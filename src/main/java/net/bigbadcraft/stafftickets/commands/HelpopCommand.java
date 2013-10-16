@@ -10,8 +10,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.io.File;
-
 /**
  * User: Heinrich Quirit
  * Last Modified: 9/25/13
@@ -23,15 +21,13 @@ public class HelpopCommand implements CommandExecutor {
     private ChatColor BLUE = ChatColor.BLUE;
     private ChatColor WHITE = ChatColor.WHITE;
 
-    private TicketPlugin plugin;
+    @SuppressWarnings("unused")
+	private TicketPlugin plugin;
     private Methods methods;
-
-    private File ticketFile;
 
     public HelpopCommand(TicketPlugin plugin) {
         this.plugin = plugin;
         this.methods = plugin.methods;
-        this.ticketFile = plugin.ticketFile;
     }
 
     @Override
@@ -55,7 +51,7 @@ public class HelpopCommand implements CommandExecutor {
             String message = StringUtils.join(strings, ' ', 0, strings.length);
             if (!methods.hasTicket(player)) {
                 methods.createTicket(player, message);
-                methods.logTicket(ticketFile, name, message, player.getLocation());
+                methods.logPlayersTicket(name, message, player.getLocation());
                 methods.notifyStaff(RED + name + ": " + message);
                 player.sendMessage(BLUE + "Successfully submitted your ticket, position" + WHITE + ": " + methods.getTickets());
             } else {

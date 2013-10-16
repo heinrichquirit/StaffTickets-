@@ -3,14 +3,10 @@ package main.java.net.bigbadcraft.stafftickets.listeners;
 import main.java.net.bigbadcraft.stafftickets.TicketPlugin;
 import main.resources.Methods;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * User: Heinrich Quirit
@@ -20,7 +16,8 @@ import java.util.Arrays;
 public class CommandListener implements Listener {
 
     private Methods methods;
-    private TicketPlugin plugin;
+    @SuppressWarnings("unused")
+	private TicketPlugin plugin;
 
     public CommandListener(TicketPlugin plugin) {
         this.plugin = plugin;

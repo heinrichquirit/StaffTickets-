@@ -10,8 +10,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import java.beans.EventHandler;
-
 /**
  * User: Heinrich Quirit
  * Last Modified: 9/25/13
@@ -37,12 +35,9 @@ public class ChatListener implements Listener {
                if (!methods.hasTicket(player) && !player.hasPermission(Perm.PERM)) {
                    methods.notifyStaff(RED + player.getName() + ": " + event.getMessage());
                    methods.createTicket(player, event.getMessage());
-                   if (plugin.getConfig().getBoolean("ticket-list.log-ticket-information")) {
-                       methods.logTicket(plugin.ticketFile, player.getName(), event.getMessage(), player.getLocation());
-                   }
+                   methods.logPlayersTicket(player.getName(), event.getMessage(), player.getLocation());
                }
            }
        }
     }
-
 }

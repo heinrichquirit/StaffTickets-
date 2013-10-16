@@ -22,7 +22,7 @@ import java.io.File;
 public class TicketPlugin extends JavaPlugin {
 
     private File config;
-    public File ticketFile;
+    private File ticketLogs;
 
     public Methods methods;
 
@@ -33,9 +33,9 @@ public class TicketPlugin extends JavaPlugin {
         saveDefaultConfig();
 
         config = new File(getDataFolder(), "config.yml");
-        ticketFile = new File(getDataFolder(), "ticketlog.txt");
+        ticketLogs = new File(getDataFolder() + "/ticketlogs");
         methods.loadFile(config);
-        methods.loadFile(ticketFile);
+        ticketLogs.mkdir();
 
         getCommand("helpop").setExecutor(new HelpopCommand(this));
         getCommand("ticket").setExecutor(new TicketCommand(this));

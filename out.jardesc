@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
 <jardesc>
-    <jar path="C:/Users/Heinrich/Desktop/StaffTickets.jar"/>
-    <options buildIfNeeded="true" compress="true" descriptionLocation="/StaffTicketsReloaded/out.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <jar path="C:/Users/Heinrich/Desktop/my plugins/StaffTickets.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/StaffTickets/out.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
     <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
     <selectedProjects/>
     <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
@@ -11,8 +11,14 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
-        <javaElement handleIdentifier="=StaffTicketsReloaded/src"/>
-        <file path="/StaffTicketsReloaded/.classpath"/>
-        <file path="/StaffTicketsReloaded/.project"/>
+        <file path="/StaffTickets/out.jardesc"/>
+        <file path="/PPlateCommands/.project"/>
+        <file path="/PPlateCommands/.classpath"/>
+        <file path="/StaffTickets/README.md"/>
+        <file path="/StaffTickets/.classpath"/>
+        <javaElement handleIdentifier="=StaffTickets/src"/>
+        <file path="/StaffTickets/.project"/>
+        <file path="/StaffTickets/.gitignore"/>
+        <file path="/PPlateCommands/out.jardesc"/>
     </selectedElements>
 </jardesc>

@@ -1,11 +1,10 @@
 package main.java.net.bigbadcraft.stafftickets.listeners;
 
 import main.java.net.bigbadcraft.stafftickets.TicketPlugin;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
-
-import java.beans.EventHandler;
 
 /**
  * User: Heinrich Quirit

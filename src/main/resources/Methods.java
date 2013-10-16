@@ -1,16 +1,24 @@
 package main.resources;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.logging.Level;
+
 import main.java.net.bigbadcraft.stafftickets.TicketPlugin;
-import org.apache.commons.lang.StringUtils;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-
-import java.io.*;
-import java.util.*;
-import java.util.logging.Level;
 
 /**
  * User: Heinrich Quirit
@@ -65,22 +73,30 @@ public class Methods {
             player.sendMessage(BLUE + entry.getKey() + WHITE + ": " + entry.getValue());
         }
     }
-
-    public void logTicket(File file, String name, String message, Location loc) {
-        try(BufferedWriter out = new BufferedWriter(new FileWriter(file, true))) {
-            out.append(name + ": " + message + " | World:"
-                    + loc.getWorld().getName()
-                    + " XYZ:"
-                    + Math.round(loc.getX()) + ", "
-                    + Math.round(loc.getY()) + ", "
-                    + Math.round(loc.getZ()));
-            out.newLine();
-            log(Level.INFO, plugName + " - " + name + "'s ticket has been logged.");
-            out.close();
-        } catch (IOException ioe) {
-            log(Level.SEVERE, "Could not write to " + file.getName());
-            ioe.printStackTrace();
-        }
+    
+    public void logPlayersTicket(String name, String message, Location loc) {
+    	File file = new File(plugin.getDataFolder() + "/ticketlogs", name + ".txt");
+    	if (plugin.getConfig().getBoolean("ticket-list.log-ticket-information")) {
+    		try(BufferedWriter out = new BufferedWriter(new FileWriter(file, true))) {
+    			if (!file.exists()) file.createNewFile();
+    			out.append("[" + new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime())
+    					+ "] " + name + ": " 
+    					+ message + " | World:" 
+    					+ loc.getWorld().getName() + " XYZ:" 
+    					+ Math.round(loc.getX()) + ", " 
+    					+ Math.round(loc.getY()) + ", "
+    					+ Math.round(loc.getZ()));
+    			out.newLine();
+    			out.close();
+    			log(Level.INFO, name + "'s ticket has been logged!");
+    		} catch (FileNotFoundException ex) {
+    			log(Level.SEVERE, file.getName() + " could not be found.");
+    			ex.printStackTrace();
+    		} catch (IOException ioe) {
+    			log(Level.SEVERE, "Could not write to " + file.getName());
+				ioe.printStackTrace();
+    		}
+    	}
     }
 
     public int getTickets() {
@@ -111,7 +127,7 @@ public class Methods {
 
     public String helpMenu() {
         return  BLUE + " -/ticket" + WHITE + " - Displays a list of commands.\n" +
-                BLUE + "-/ticket readfile" + WHITE + " - Displays logged info from file.\n" +
+                BLUE + "-/ticket readfile <player>" + WHITE + " - Displays logged info from file.\n" +
                 BLUE + "-/ticket list" + WHITE + " - Displays a list of open tickets.\n" +
                 BLUE + "-/ticket view <player>" + WHITE + " - View player's helpop tickets.\n" +
                 BLUE + "-/ticket del <player> <index>" + WHITE + " - Deletes ticket at index.\n" +
@@ -130,11 +146,13 @@ public class Methods {
         return !tickets.isEmpty();
     }
 
-    public void readLoggedTickets(Player player) {
+    public void readLoggedTickets(Player player, Player target) {
+    	File file = new File(plugin.getDataFolder() + "/ticketlogs", target.getName() + ".txt");
         try {
-            Scanner in = new Scanner(plugin.ticketFile);
+            @SuppressWarnings("resource")
+			Scanner in = new Scanner(file);
             if (in.hasNextLine()) {
-                player.sendMessage(BLUE + "Fetching tickets for you..");
+                player.sendMessage(BLUE + "Fetching " + target.getName() + "'s logged tickets for you..");
                 while (in.hasNextLine()) {
                     player.sendMessage(in.nextLine());
                 }
@@ -142,9 +160,9 @@ public class Methods {
                 player.sendMessage(RED + "No data was found in the file.");
             }
         } catch (FileNotFoundException e) {
-            log(Level.SEVERE, plugin.ticketFile.getName() + " could not be found, let's create it!");
-            plugin.methods.loadFile(plugin.ticketFile);
-            log(Level.INFO, plugin.ticketFile.getName() + " has been successfully created.");
+            log(Level.SEVERE, file.getName() + " could not be found, let's create it!");
+            loadFile(file);
+            log(Level.INFO, file.getName() + " has been successfully created.");
         }
     }
 

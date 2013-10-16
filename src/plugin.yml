@@ -1,10 +1,14 @@
 name: StaffTickets
-main: net.bigbadcraft.stafftickets.Main
-version: 1.7
+main: main.java.net.bigbadcraft.stafftickets.TicketPlugin
+version: 1.9
 commands:
   helpop:
     description: Submits a ticket using the ticket system.
   ticket:
     description: Displays a list of commands.
     permission: staffticket.mod
-    permission-message: §cYou do not have <permission> permission.
+    permission-message: You do not have <permission>
+  mytickets:
+    description: View your helpop tickets.
+    permissino: staffticket.myticket
+    permission-message: You do not have <permission>

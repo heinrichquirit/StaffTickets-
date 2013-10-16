@@ -1,5 +1,7 @@
 package main.java.net.bigbadcraft.stafftickets.commands;
 
+import java.io.File;
+
 import main.java.net.bigbadcraft.stafftickets.TicketPlugin;
 import main.resources.Methods;
 
@@ -21,7 +23,7 @@ public class TicketCommand implements CommandExecutor {
     private ChatColor BLUE = ChatColor.BLUE;
     private ChatColor RED = ChatColor.RED;
 
-    private TicketPlugin plugin;
+	private TicketPlugin plugin;
     private Methods methods;
 
     public TicketCommand(TicketPlugin plugin) {
@@ -46,9 +48,7 @@ public class TicketCommand implements CommandExecutor {
             player.sendMessage(methods.helpMenu());
             return true;
         } else if (strings.length == 1) {
-            if (strings[0].equalsIgnoreCase("readfile")) {
-                methods.readLoggedTickets(player);
-            } else if (strings[0].equalsIgnoreCase("list")) {
+            if (strings[0].equalsIgnoreCase("list")) {
                 if (methods.isNotEmpty()) {
                     player.sendMessage(methods.ticketListHeader());
                     methods.sendTicketList(player);
@@ -56,6 +56,8 @@ public class TicketCommand implements CommandExecutor {
                 } else {
                     player.sendMessage(BLUE + "There are no tickets available.");
                 }
+            } else if (strings[0].equalsIgnoreCase("readfile")) {
+            	player.sendMessage(RED + "Incorrecy syntax, usage: /ticket readfile <player>");
             } else if (strings[0].equalsIgnoreCase("view")) {
                 player.sendMessage(RED + "Incorrect syntax, usage: /ticket view <player>");
             } else if (strings[0].equalsIgnoreCase("tp")) {
@@ -76,7 +78,13 @@ public class TicketCommand implements CommandExecutor {
             }
         } else if (strings.length == 2) {
             Player target = Bukkit.getPlayer(strings[1]);
-            if (target != null) {
+            if (strings[0].equalsIgnoreCase("readfile")) {
+        		if (new File(plugin.getDataFolder() + "/ticketlogs", strings[1] + ".txt").exists()) {
+        			methods.readLoggedTickets(player, target);
+        		} else {
+        			player.sendMessage(BLUE + strings[1] + WHITE + " has no logged ticket(s)");
+        		}
+        	} else if (target != null) {
                 if (strings[0].equalsIgnoreCase("view")) {
                     if (methods.hasHelpop(target)) {
                         methods.displayTicket(player, target);
