@@ -1,5 +1,9 @@
 package main.java.net.bigbadcraft.stafftickets;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+
 import main.java.net.bigbadcraft.stafftickets.commands.HelpopCommand;
 import main.java.net.bigbadcraft.stafftickets.commands.MyTicketsCommand;
 import main.java.net.bigbadcraft.stafftickets.commands.TicketCommand;
@@ -11,8 +15,6 @@ import main.resources.Methods;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.File;
 
 /**
  * User: Heinrich Quirit
@@ -49,6 +51,17 @@ public class TicketPlugin extends JavaPlugin {
             Bukkit.getScheduler().runTaskTimerAsynchronously(this, new BroadcastTask(this),
                     3600, 20 * 60 * getConfig().getInt("reminder.interval"));
         }
+        
+        startMetrics();
+    }
+    
+    private void startMetrics() {
+    	try {
+    	    Metrics metrics = new Metrics(this);
+    	    metrics.start();
+    	} catch (IOException e) {
+    	    methods.log(Level.SEVERE, "StaffTickets failed to submit data.");
+    	}
     }
 
     @Override
