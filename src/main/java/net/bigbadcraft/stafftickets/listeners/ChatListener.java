@@ -2,7 +2,7 @@ package main.java.net.bigbadcraft.stafftickets.listeners;
 
 import main.java.net.bigbadcraft.stafftickets.TicketPlugin;
 import main.resources.Methods;
-import main.resources.Perm;
+import main.resources.Permission;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -32,7 +32,7 @@ public class ChatListener implements Listener {
        final Player player = event.getPlayer();
        for (String message : plugin.getConfig().getStringList("ticket-list.trigger")) {
            if (event.getMessage().contains(message)) {
-               if (!methods.hasTicket(player) && !player.hasPermission(Perm.PERM)) {
+               if (!methods.hasTicket(player) && !player.hasPermission(Permission.STAFF.getPerm())) {
                    methods.notifyStaff(RED + player.getName() + ": " + event.getMessage());
                    methods.createTicket(player, event.getMessage());
                    methods.logPlayersTicket(player.getName(), event.getMessage(), player.getLocation());

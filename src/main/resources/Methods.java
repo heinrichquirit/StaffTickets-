@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
+import java.util.SortedMap;
 import java.util.logging.Level;
 
 import main.java.net.bigbadcraft.stafftickets.TicketPlugin;
@@ -26,21 +28,19 @@ import org.bukkit.entity.Player;
  * Time: 6:09 PM
  */
 public class Methods {
-
+	
     private ChatColor BLUE = ChatColor.BLUE;
     private ChatColor WHITE = ChatColor.WHITE;
     private ChatColor RED = ChatColor.RED;
-
-    private Map<String, String> tickets;
-    private Map<String, ArrayList<String>> helpopTickets;
+    
+    private final HashMap<String, String> tickets = new HashMap<String, String>();
+    private final HashMap<String, ArrayList<String>> helpopTickets = new HashMap<String, ArrayList<String>>();
 
     private TicketPlugin plugin;
     private String plugName;
     private String plugVer;
 
     public Methods(TicketPlugin plugin) {
-        tickets = new HashMap<String, String>();
-        helpopTickets = new HashMap<String, ArrayList<String>>();
         this.plugin = plugin;
         this.plugName = plugin.getDescription().getName();
         this.plugVer = plugin.getDescription().getVersion();
@@ -65,7 +65,7 @@ public class Methods {
     }
 
     public void notifyStaff(String message) {
-        Bukkit.broadcast(message, Perm.PERM);
+        Bukkit.broadcast(message, Permission.STAFF.getPerm());
     }
 
     public void sendTicketList(Player player) {
@@ -145,7 +145,7 @@ public class Methods {
     public boolean isNotEmpty() {
         return !tickets.isEmpty();
     }
-
+    
     public void readLoggedTickets(Player player, Player target) {
     	File file = new File(plugin.getDataFolder() + "/ticketlogs", target.getName() + ".txt");
         try {
@@ -164,6 +164,20 @@ public class Methods {
             loadFile(file);
             log(Level.INFO, file.getName() + " has been successfully created.");
         }
+    }
+    
+    // This could be used later on
+    public void paginate(Player player, SortedMap<Integer, String> map, int page, int pageLength) {
+    	player.sendMessage(ChatColor.YELLOW + "List: Page (" + String.valueOf(page) + " of " + (((map.size() % pageLength) == 0) ? map.size() / pageLength : (map.size() / pageLength) + 1));
+    	int i = 0, k = 0;
+    	page--;
+    	for (final Entry<Integer, String> e : map.entrySet()) {
+    		k++;
+    		if ((((page * pageLength) + i + 1) == k) && (k != ((page * pageLength) + pageLength + 1))) {
+    			i++;
+    			player.sendMessage(ChatColor.YELLOW + " - " + e.getValue());
+    		}
+    	}
     }
 
     public void loadFile(File file) {

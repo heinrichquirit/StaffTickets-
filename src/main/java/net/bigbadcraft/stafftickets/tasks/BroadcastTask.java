@@ -1,7 +1,7 @@
 package main.java.net.bigbadcraft.stafftickets.tasks;
 
 import main.java.net.bigbadcraft.stafftickets.TicketPlugin;
-import main.resources.Perm;
+import main.resources.Permission;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -27,7 +27,7 @@ public class BroadcastTask extends BukkitRunnable {
     @Override
     public void run() {
         for (Player players : Bukkit.getOnlinePlayers()) {
-            if (players.hasPermission(Perm.PERM)) {
+            if (players.hasPermission(Permission.STAFF.getPerm())) {
                 if (plugin.methods.isNotEmpty()) {
                     players.sendMessage(plugin.methods.noticeHeader());
                     plugin.methods.sendTicketList(players);

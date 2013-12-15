@@ -22,3 +22,12 @@ reminder:
   enable: false
   # Interval is set to 10min by default
   interval: 10
+  
+mysql:
+  # Set this to true to enable claimed/deleted tickets storage.
+  enable: false
+  user: username
+  host: localhost
+  port: 3306
+  password: password
+  database: database

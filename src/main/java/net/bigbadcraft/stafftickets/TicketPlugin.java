@@ -28,7 +28,7 @@ public class TicketPlugin extends JavaPlugin {
 
     public Methods methods;
 
-    @Override
+	@Override
     public void onEnable() {
         methods = new Methods(this);
 
