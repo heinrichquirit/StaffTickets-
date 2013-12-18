@@ -1,6 +1,6 @@
 name: StaffTickets
 main: main.java.net.bigbadcraft.stafftickets.TicketPlugin
-version: 1.9
+version: 2.0
 commands:
   helpop:
     description: Submits a ticket using the ticket system.

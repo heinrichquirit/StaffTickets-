@@ -10,9 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Scanner;
-import java.util.SortedMap;
 import java.util.logging.Level;
 
 import main.java.net.bigbadcraft.stafftickets.TicketPlugin;
@@ -64,8 +62,9 @@ public class Methods {
         tickets.clear();
     }
 
-    public void notifyStaff(String message) {
-        Bukkit.broadcast(message, Permission.STAFF.getPerm());
+    public void notifyStaff(String name, String message) {
+    	Bukkit.broadcast(ChatColor.translateAlternateColorCodes('&',
+    			plugin.messageFormat.replace("%name", name).replace("%message", message)), Permission.STAFF.getPerm());
     }
 
     public void sendTicketList(Player player) {
@@ -104,11 +103,7 @@ public class Methods {
     }
 
     public String noticeHeader() {
-        return BLUE
-                + "+-------- " + WHITE + "[ " + BLUE
-                + "Notice" + " " + WHITE
-                + "(" + getTickets() + ")"
-                + " ]" + BLUE + " --------+";
+    	return ChatColor.translateAlternateColorCodes('&', plugin.titleHeader.replace("%ticketQty", ""+getTickets()));
     }
 
     public String ticketListHeader() {
@@ -166,7 +161,7 @@ public class Methods {
         }
     }
     
-    // This could be used later on
+    /* Might be used later on.
     public void paginate(Player player, SortedMap<Integer, String> map, int page, int pageLength) {
     	player.sendMessage(ChatColor.YELLOW + "List: Page (" + String.valueOf(page) + " of " + (((map.size() % pageLength) == 0) ? map.size() / pageLength : (map.size() / pageLength) + 1));
     	int i = 0, k = 0;
@@ -179,6 +174,7 @@ public class Methods {
     		}
     	}
     }
+    */
 
     public void loadFile(File file) {
         if (!file.exists()) {
@@ -243,4 +239,5 @@ public class Methods {
     public boolean isHelpopCmd(String str) {
         return str.substring(0, 7).equalsIgnoreCase("/helpop");
     }
+    
 }

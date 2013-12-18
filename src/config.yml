@@ -1,4 +1,7 @@
 ticket-list:
+  # The format for broadcasted tickets
+  # %name = player's name and %message = player's message
+  ticket-message-format: '[&9StaffTickets&f] &9%name&f: %message'
   # Set this to false if you want tickets to not be deleted.
   delete-on-leave: true
 
@@ -20,14 +23,8 @@ ticket-list:
 reminder:
   # Set this to true to enable ticket reminders.
   enable: false
+  # The title header for your scheduled ticket reminders.
+  # %ticketQty = The amount of tickets available.
+  title-header: '&9+-------- &f[&9Notice &f(%ticketQty)] &9 --------+'
   # Interval is set to 10min by default
   interval: 10
-  
-mysql:
-  # Set this to true to enable claimed/deleted tickets storage.
-  enable: false
-  user: username
-  host: localhost
-  port: 3306
-  password: password
-  database: database

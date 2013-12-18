@@ -21,13 +21,12 @@ public class HelpopCommand implements CommandExecutor {
     private ChatColor BLUE = ChatColor.BLUE;
     private ChatColor WHITE = ChatColor.WHITE;
 
-    @SuppressWarnings("unused")
 	private TicketPlugin plugin;
     private Methods methods;
 
     public HelpopCommand(TicketPlugin plugin) {
         this.plugin = plugin;
-        this.methods = plugin.methods;
+        this.methods = this.plugin.methods;
     }
 
     @Override
@@ -52,7 +51,7 @@ public class HelpopCommand implements CommandExecutor {
             if (!methods.hasTicket(player)) {
                 methods.createTicket(player, message);
                 methods.logPlayersTicket(name, message, player.getLocation());
-                methods.notifyStaff(RED + name + ": " + message);
+                methods.notifyStaff(name, message);
                 player.sendMessage(BLUE + "Successfully submitted your ticket, position" + WHITE + ": " + methods.getTickets());
             } else {
                 player.sendMessage(BLUE + "You have one outstanding ticket in queue, position" + WHITE + ": " + methods.getTickets());

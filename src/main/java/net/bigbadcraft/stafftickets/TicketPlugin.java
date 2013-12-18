@@ -27,6 +27,9 @@ public class TicketPlugin extends JavaPlugin {
     private File ticketLogs;
 
     public Methods methods;
+    
+    public String messageFormat;
+    public String titleHeader;
 
 	@Override
     public void onEnable() {
@@ -38,7 +41,9 @@ public class TicketPlugin extends JavaPlugin {
         ticketLogs = new File(getDataFolder() + "/ticketlogs");
         methods.loadFile(config);
         ticketLogs.mkdir();
-
+        
+        loadValues();
+        
         getCommand("helpop").setExecutor(new HelpopCommand(this));
         getCommand("ticket").setExecutor(new TicketCommand(this));
         getCommand("mytickets").setExecutor(new MyTicketsCommand(this));
@@ -55,6 +60,12 @@ public class TicketPlugin extends JavaPlugin {
         startMetrics();
     }
     
+    @Override
+    public void onDisable() {
+        methods.clearTickets();
+        methods.helpopClear();
+    }
+    
     private void startMetrics() {
     	try {
     	    Metrics metrics = new Metrics(this);
@@ -63,11 +74,11 @@ public class TicketPlugin extends JavaPlugin {
     	    methods.log(Level.SEVERE, "StaffTickets failed to submit data.");
     	}
     }
-
-    @Override
-    public void onDisable() {
-        methods.clearTickets();
-        methods.helpopClear();
+    
+    private void loadValues() {
+    	messageFormat = getConfig().getString("ticket-list.ticket-message-format");
+        titleHeader = getConfig().getString("reminder.title-header");
     }
+
 
 }
