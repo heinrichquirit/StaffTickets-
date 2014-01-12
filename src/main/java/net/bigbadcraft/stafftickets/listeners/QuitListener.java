@@ -1,6 +1,7 @@
 package main.java.net.bigbadcraft.stafftickets.listeners;
 
 import main.java.net.bigbadcraft.stafftickets.TicketPlugin;
+import main.resources.ConfigPaths;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -22,7 +23,7 @@ public class QuitListener implements Listener {
     @org.bukkit.event.EventHandler
     public void onQuit(PlayerQuitEvent event) {
         final Player player = event.getPlayer();
-        if (plugin.getConfig().getBoolean("ticket-list.delete-on-leave")) {
+        if (plugin.getConfig().getBoolean(ConfigPaths.DELETE_ON_LEAVE)) {
             if (plugin.methods.hasTicket(player)) {
                 plugin.methods.deleteTicket(player);
                 plugin.methods.helpopDelete(player);

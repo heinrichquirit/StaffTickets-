@@ -1,6 +1,7 @@
 package main.java.net.bigbadcraft.stafftickets.listeners;
 
 import main.java.net.bigbadcraft.stafftickets.TicketPlugin;
+import main.resources.ConfigPaths;
 import main.resources.Methods;
 import main.resources.Permission;
 
@@ -27,7 +28,7 @@ public class ChatListener implements Listener {
     @org.bukkit.event.EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onChat(final AsyncPlayerChatEvent event) {
        final Player player = event.getPlayer();
-       for (String message : plugin.getConfig().getStringList("ticket-list.trigger")) {
+       for (String message : plugin.getConfig().getStringList(ConfigPaths.TRIGGER_WORDS)) {
            if (event.getMessage().contains(message)) {
                if (!methods.hasTicket(player) && !player.hasPermission(Permission.STAFF.getPerm())) {
                    methods.notifyStaff(player.getName(), event.getMessage());

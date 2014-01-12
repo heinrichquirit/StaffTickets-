@@ -11,6 +11,7 @@ import main.java.net.bigbadcraft.stafftickets.listeners.ChatListener;
 import main.java.net.bigbadcraft.stafftickets.listeners.CommandListener;
 import main.java.net.bigbadcraft.stafftickets.listeners.QuitListener;
 import main.java.net.bigbadcraft.stafftickets.tasks.BroadcastTask;
+import main.resources.ConfigPaths;
 import main.resources.Methods;
 
 import org.bukkit.Bukkit;
@@ -52,9 +53,9 @@ public class TicketPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new QuitListener(this), this);
         getServer().getPluginManager().registerEvents(new CommandListener(this), this);
 
-        if (getConfig().getBoolean("reminder.enable")) {
+        if (getConfig().getBoolean(ConfigPaths.REMINDER_ENABLE)) {
             Bukkit.getScheduler().runTaskTimerAsynchronously(this, new BroadcastTask(this),
-                    3600, 20 * 60 * getConfig().getInt("reminder.interval"));
+                    3600, 20 * 60 * getConfig().getInt(ConfigPaths.REMINDER_INTERVAL));
         }
         
         startMetrics();
@@ -76,8 +77,8 @@ public class TicketPlugin extends JavaPlugin {
     }
     
     private void loadValues() {
-    	messageFormat = getConfig().getString("ticket-list.ticket-message-format");
-        titleHeader = getConfig().getString("reminder.title-header");
+    	messageFormat = getConfig().getString(ConfigPaths.MESSAGE_FORMAT);
+        titleHeader = getConfig().getString(ConfigPaths.TITLE_HEADER);
     }
 
 
